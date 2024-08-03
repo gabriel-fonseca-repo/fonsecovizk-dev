@@ -22,7 +22,7 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
     description={description}
     openGraph={{
         basic: {
-            title: "Escritório de advocacia Brito Maia",
+            title: title,
             type: "website",
             image: new URL(image, Astro.url).toString(),
             url: Astro.url,
@@ -35,7 +35,7 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
     twitter={{
         creator: "@gabrielfonsecafeitosa",
         card: "summary_large_image",
-        title: "Escritório de advocacia Brito Maia",
+        title: title,
         description: description,
         image: new URL(image, Astro.url).toString(),
         site: Astro.url + "",
