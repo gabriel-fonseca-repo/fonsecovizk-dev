@@ -3,6 +3,13 @@ import BaseHead from "../components/BaseHead.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 
+import tenmaOne from "../images/monster/tenma-one.png";
+import tenmaTwo from "../images/monster/tenma-two.png";
+import tenmaThree from "../images/monster/tenma-three.png";
+
+import johanLeft from "../images/monster/johan-left-side.png";
+import tenmaRight from "../images/monster/tenma-right-side.png";
+
 interface Props {
     title: string;
     description: string;
@@ -10,7 +17,10 @@ interface Props {
 
 const { title, description }: Props = Astro.props;
 
-const images = ["/monster/tenma-one.png", "/monster/tenma-two.png", "/monster/tenma-three.png"];
+const images = [tenmaOne, tenmaTwo, tenmaThree];
+
+const left = `url(${johanLeft.src})`;
+const right = `url(${tenmaRight.src})`;
 ---
 
 <!doctype html>
@@ -25,7 +35,7 @@ const images = ["/monster/tenma-one.png", "/monster/tenma-two.png", "/monster/te
                 {
                     images.map((image, index) => (
                         <div class={`${index % 2 == 0 ? "-rotate-12" : "rotate-12"} aspect-auto shadow-lg lg:w-52`}>
-                            <img src={image} alt="" />
+                            <img src={image.src} alt={`Foto do Dr. Tenma nº ${index + 1}}`} />
                         </div>
                     ))
                 }
@@ -38,7 +48,7 @@ const images = ["/monster/tenma-one.png", "/monster/tenma-two.png", "/monster/te
     </body>
 </html>
 
-<style is:global>
+<style is:global define:vars={{ johanLeftSrc: left, tenmaRightSrc: right }}>
     body,
     html {
         font-family: "Courier Prime", monospace;
@@ -46,7 +56,7 @@ const images = ["/monster/tenma-one.png", "/monster/tenma-two.png", "/monster/te
 
     body {
         height: 100vh;
-        background-image: url("/monster/johan-left-side.png"), url("/monster/tenma-right-side.png");
+        background-image: var(--johanLeftSrc), var(--tenmaRightSrc);
         background-position:
             left top,
             right top;
