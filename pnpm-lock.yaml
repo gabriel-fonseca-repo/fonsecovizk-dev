@@ -20,6 +20,9 @@ importers:
       '@astrojs/tailwind':
         specifier: ^5.1.0
         version: 5.1.0(astro@4.13.1(typescript@5.5.4))(tailwindcss@3.4.7)
+      '@fontsource-variable/workbench':
+        specifier: ^5.0.2
+        version: 5.0.2
       '@fontsource/courier-prime':
         specifier: ^5.0.20
         version: 5.0.20
@@ -348,6 +351,9 @@ packages:
     engines: {node: '>=12'}
     cpu: [x64]
     os: [win32]
+
+  '@fontsource-variable/workbench@5.0.2':
+    resolution: {integrity: sha512-44XiOTOyUC6iWWtb+KEcsLmyWq+Mmpft4FI30diCaN74znHxWApdr7o94nke97zH/ulQeNYdjWpg3sR414Q/hQ==}
 
   '@fontsource/courier-prime@5.0.20':
     resolution: {integrity: sha512-/papZiKYTUA61Jo+N7ZcZZyvjbjbIHSLW3vbO8ZYJbWzVZqqGJg9W0D6cGgE1SCBJ+jMvNR2KB2lBC9PKag3KQ==}
@@ -2574,6 +2580,8 @@ snapshots:
 
   '@esbuild/win32-x64@0.21.5':
     optional: true
+
+  '@fontsource-variable/workbench@5.0.2': {}
 
   '@fontsource/courier-prime@5.0.20': {}
 
