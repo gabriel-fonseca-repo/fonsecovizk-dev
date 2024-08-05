@@ -18,12 +18,12 @@ const { page } = Astro.props;
 <MainLayout title="Meus posts" description="postagens">
     <div class="flex flex-col flex-nowrap h-full">
         <h1 class="text-xl text-center blinking-terminal-cursor mb-3 flex-shrink">Meus posts</h1>
-        <div class="overflow-y-scroll flex-grow">
+        <div class="flex-grow">
             {
                 page.data.map((post) => (
                     <article class="border-b-2 pb-4 mt-4 last:border-b-0 last:pb-0 first:mt-0 border-slate-500">
                         <div class="flex flex-row flex-nowrap">
-                            <a class="text-xl mb-1 flex-grow" href={Astro.url + "/" + post.slug}>
+                            <a class="text-xl mb-1 flex-grow" href={"/fonsecovizk-dev/blog/" + post.slug}>
                                 <h1>{post.data.title}</h1>
                             </a>
                             <time class="flex-shrink ml-6" datetime={post.data.pubDate.toISOString()}>
