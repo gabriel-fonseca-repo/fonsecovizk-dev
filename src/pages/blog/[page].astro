@@ -29,7 +29,12 @@ const { page } = Astro.props;
 
 <MainLayout title="Meus posts">
     <div class="flex flex-col flex-nowrap h-full">
-        <h1 class="text-xl text-center blinking-terminal-cursor mb-3 flex-shrink">Meus posts</h1>
+        <h1 class="text-xl text-center blinking-terminal-cursor flex-shrink">Meus posts</h1>
+        <div class="flex-shrink my-3 py-3 border-y-2 border-black flex flex-nowrap flex-row justify-center">
+            <span class="text-center w-5/12">{page.url.prev ? <a href={page.url.prev}>&larr; Página anterior</a> : "Não há página anterior"}</span>
+            <span class="text-center w-2/12">|&nbsp;{page.currentPage}&nbsp;|</span>
+            <span class="text-center w-5/12">{page.url.next ? <a href={page.url.next}>Próxima página &rarr;</a> : "Não há próxima página"}</span>
+        </div>
         <div class="flex-grow">
             {
                 page.data.map((post) => (
@@ -47,11 +52,6 @@ const { page } = Astro.props;
                     </article>
                 ))
             }
-        </div>
-        <div class="flex-shrink mt-4 flex flex-nowrap flex-row justify-center">
-            <span class="text-center w-5/12">{page.url.prev ? <a href={page.url.prev}>&larr; Página anterior</a> : "Não há página anterior"}</span>
-            <span class="text-center w-2/12">|&nbsp;{page.currentPage}&nbsp;|</span>
-            <span class="text-center w-5/12">{page.url.next ? <a href={page.url.next}>Próxima página &rarr;</a> : "Não há próxima página"}</span>
         </div>
     </div>
 </MainLayout>
