@@ -4,8 +4,6 @@ const links = [
     { href: "/curriculo", text: "Currículo" },
     { href: "/blog/1", text: "Meu blog" },
 ];
-
-const makeWithAstroUrl = (href: string) => "/fonsecovizk-dev" + href;
 ---
 
 <header class="bg-white p-4 text-justify rounded-lg main-sibling lg:w-[59rem] mt-4">
@@ -14,7 +12,7 @@ const makeWithAstroUrl = (href: string) => "/fonsecovizk-dev" + href;
             {
                 links.map(({ href, text }) => (
                     <li class="flex-[5] w-full text-center">
-                        <a class="anchor-bracket text-nowrap" href={makeWithAstroUrl(href)}>
+                        <a class="anchor-bracket text-nowrap" href={href}>
                             {text}
                         </a>
                     </li>

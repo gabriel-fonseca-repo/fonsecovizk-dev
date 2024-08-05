@@ -6,7 +6,6 @@ import tailwind from "@astrojs/tailwind";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://gabriel-fonseca-repo.github.io',
-  base: 'fonsecovizk-dev',
+  site: 'https://fonsecovizk.dev',
   integrations: [mdx(), sitemap(), tailwind()]
 });
