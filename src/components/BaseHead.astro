@@ -3,8 +3,6 @@ import { ViewTransitions } from "astro:transitions";
 import { SEO } from "astro-seo";
 import "../styles/global.css";
 
-import logoSquare from "../images/other/fonsecovizk-dev-icon-square.png";
-
 interface Props {
     title?: string | undefined;
     description?: string | undefined;
@@ -18,6 +16,8 @@ const { title, description = "Dicussões e minhas opiniões sobre tecnologia e d
 const titleTemplate = "%s - Blog do fonseca";
 
 const finalTitle = title ? titleTemplate.replace("%s", title) : "Blog do fonseca";
+
+const banner = new URL(image, Astro.url).toString();
 ---
 
 <meta charset="utf-8" />
@@ -29,7 +29,7 @@ const finalTitle = title ? titleTemplate.replace("%s", title) : "Blog do fonseca
         basic: {
             title: finalTitle,
             type: "website",
-            image: new URL(logoSquare.src, Astro.url).toString(),
+            image: banner,
             url: Astro.url,
         },
         optional: {
@@ -48,7 +48,7 @@ const finalTitle = title ? titleTemplate.replace("%s", title) : "Blog do fonseca
         card: "summary_large_image",
         title: finalTitle,
         description: description,
-        image: new URL(image, Astro.url).toString(),
+        image: banner,
         site: Astro.url + "",
     }}
     extend={{
