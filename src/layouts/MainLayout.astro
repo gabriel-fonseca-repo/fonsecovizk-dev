@@ -53,9 +53,9 @@ const right = `url(${tenmaRight.src})`;
 </html>
 
 <style is:global define:vars={{ johanLeftSrc: left, tenmaRightSrc: right }}>
-    body,
     html {
         font-family: "Courier Prime", monospace;
+        overflow-y: scroll;
     }
 
     h1 {
@@ -63,7 +63,6 @@ const right = `url(${tenmaRight.src})`;
     }
 
     body {
-        height: 100vh;
         background-image: var(--johanLeftSrc), var(--tenmaRightSrc);
         background-position:
             left top,
