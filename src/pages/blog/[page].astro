@@ -2,20 +2,32 @@
 import { getCollection } from "astro:content";
 import MainLayout from "../../layouts/MainLayout.astro";
 import type { Page } from "astro";
+import { Image } from "astro:assets";
 
 export async function getStaticPaths({ paginate }) {
     const posts = (await getCollection("blog")).sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf());
-    return paginate(posts, { pageSize: 6 });
+    return paginate(posts, { pageSize: 2 });
+}
+
+interface Post {
+    slug: string;
+    data: {
+        title: string;
+        description: string;
+        pubDate: Date;
+        updatedDate?: Date | undefined;
+        heroImage: string;
+    };
 }
 
 interface Props {
-    page: Page;
+    page: Page<Post>;
 }
 
 const { page } = Astro.props;
 ---
 
-<MainLayout title="Meus posts" description="postagens">
+<MainLayout title="Meus posts">
     <div class="flex flex-col flex-nowrap h-full">
         <h1 class="text-xl text-center blinking-terminal-cursor mb-3 flex-shrink">Meus posts</h1>
         <div class="flex-grow">
@@ -23,7 +35,7 @@ const { page } = Astro.props;
                 page.data.map((post) => (
                     <article class="border-b-2 pb-4 mt-4 last:border-b-0 last:pb-0 first:mt-0 border-slate-500">
                         <div class="flex flex-row flex-nowrap">
-                            <a class="text-xl mb-1 flex-grow" href={"/blog/" + post.slug}>
+                            <a class="text-xl mb-1 flex-grow" href={"/blog/" + post.slug + "/"}>
                                 <h1>{post.data.title}</h1>
                             </a>
                             <time class="flex-shrink ml-6" datetime={post.data.pubDate.toISOString()}>
@@ -31,13 +43,14 @@ const { page } = Astro.props;
                             </time>
                         </div>
                         <p>{post.data.description}</p>
+                        <Image class:list={["rounded-lg", "mt-2"]} src={new URL(post.data.heroImage, Astro.url).toString()} alt={`Banner do post Nº ${post.data}}`} loading={"eager"} inferSize />
                     </article>
                 ))
             }
         </div>
         <div class="flex-shrink mt-4 flex flex-nowrap flex-row justify-center">
             <span class="text-center w-5/12">{page.url.prev ? <a href={page.url.prev}>&larr; Página anterior</a> : "Não há página anterior"}</span>
-            <span class="text-center w-2/12">&nbsp;|&nbsp;</span>
+            <span class="text-center w-2/12">|&nbsp;{page.currentPage}&nbsp;|</span>
             <span class="text-center w-5/12">{page.url.next ? <a href={page.url.next}>Próxima página &rarr;</a> : "Não há próxima página"}</span>
         </div>
     </div>

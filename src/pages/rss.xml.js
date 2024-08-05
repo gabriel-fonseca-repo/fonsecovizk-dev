@@ -4,9 +4,8 @@ import { getCollection } from 'astro:content';
 export async function GET(context) {
   const posts = await getCollection('blog');
   return rss({
-    // TODO: Mudar o title e description
-    title: "MUDAR DEPOIS",
-    description: "MUDAR DEPOIS",
+    title: "Feed RSS do Blog",
+    description: "Pra quem quiser acompanhar os novos posts sem precisar entrar no site",
     site: context.site,
     items: posts.map((post) => ({
       ...post.data,

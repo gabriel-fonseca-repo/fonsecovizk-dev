@@ -16,8 +16,8 @@ import johanLeft from "../images/monster/johan-left-side.jpeg";
 import tenmaRight from "../images/monster/tenma-right-side.jpeg";
 
 interface Props {
-    title: string;
-    description: string;
+    title?: string;
+    description?: string;
     images?: ImageMetadata[];
 }
 
@@ -35,7 +35,7 @@ const right = `url(${tenmaRight.src})`;
     <body class="w-full flex flex-col flex-nowrap h-fit place-items-center gap-4">
         <Header />
         <div class="flex flex-nowrap flex-col lg:flex-row">
-            <div class="m-8 flex flex-row flex-nowrap lg:flex-col">
+            <div class="m-8 flex flex-row flex-nowrap h-min lg:flex-col lg:sticky lg:top-8">
                 {
                     images.map((image, index) => (
                         <div class={`${index % 2 == 0 ? "-rotate-12" : "rotate-12"} aspect-auto shadow-lg lg:w-52`}>

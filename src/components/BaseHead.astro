@@ -3,52 +3,63 @@ import { ViewTransitions } from "astro:transitions";
 import { SEO } from "astro-seo";
 import "../styles/global.css";
 
+import logoSquare from "../images/other/fonsecovizk-dev-icon-square.png";
+
 interface Props {
-    title: string;
-    description: string;
+    title?: string | undefined;
+    description?: string | undefined;
     image?: string;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
+const { title, description = "Dicussões e minhas opiniões sobre tecnologia e desenvolvimento de software com uma pitada de video-games, causas sociais e adjacências do meu interesse aqui e acolá.", image = "/banner-opengraph.jpg" } = Astro.props;
+
+const titleTemplate = "%s - Blog do fonseca";
+
+const finalTitle = title ? titleTemplate.replace("%s", title) : "Blog do fonseca";
 ---
 
 <meta charset="utf-8" />
 
 <SEO
-    title={title}
-    titleTemplate="%s - Blog do fonseca"
-    titleDefault="Blog do fonseca"
+    title={finalTitle}
     description={description}
     openGraph={{
         basic: {
-            title: title,
+            title: finalTitle,
             type: "website",
-            image: new URL(image, Astro.url).toString(),
+            image: new URL(logoSquare.src, Astro.url).toString(),
             url: Astro.url,
         },
         optional: {
             locale: "pt_BR",
             description: description,
+            siteName: "Blog do fonseca",
+        },
+        article: {
+            publishedTime: new Date().toISOString(),
+            authors: ["Gabriel Fonseca"],
+            tags: ["blog", "tecnologia", "desenvolvimento de software", "engenharia de software", "desenvolvimento back-end", "desenvolvimento front-end", "video-games", "causas sociais"],
         },
     }}
     twitter={{
-        creator: "@gabrielfonsecafeitosa",
+        creator: "@fonsecovizk",
         card: "summary_large_image",
-        title: title,
+        title: finalTitle,
         description: description,
         image: new URL(image, Astro.url).toString(),
         site: Astro.url + "",
     }}
     extend={{
         link: [
-            { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
+            { rel: "icon", href: new URL("/favicon.svg", Astro.url).toString(), type: "image/svg+xml" },
             { rel: "canonical", href: canonicalURL.toString() },
         ],
         meta: [
             { name: "viewport", content: "width=device-width, initial-scale=1" },
             { name: "generator", content: Astro.generator },
+            { name: "theme-color", content: "#D9D9D9" },
         ],
     }}
 />
