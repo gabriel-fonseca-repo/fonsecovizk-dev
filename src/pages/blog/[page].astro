@@ -1,0 +1,44 @@
+---
+import { getCollection } from "astro:content";
+import MainLayout from "../../layouts/MainLayout.astro";
+import type { Page } from "astro";
+
+export async function getStaticPaths({ paginate }) {
+    const posts = (await getCollection("blog")).sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf());
+    return paginate(posts, { pageSize: 6 });
+}
+
+interface Props {
+    page: Page;
+}
+
+const { page } = Astro.props;
+---
+
+<MainLayout title="Meus posts" description="postagens">
+    <div class="flex flex-col flex-nowrap h-full">
+        <h1 class="text-xl text-center blinking-terminal-cursor mb-3 flex-shrink">Meus posts</h1>
+        <div class="overflow-y-scroll flex-grow">
+            {
+                page.data.map((post) => (
+                    <article class="border-b-2 pb-4 mt-4 last:border-b-0 last:pb-0 first:mt-0 border-slate-500">
+                        <div class="flex flex-row flex-nowrap">
+                            <a class="text-xl mb-1 flex-grow" href={Astro.url + "/" + post.slug}>
+                                <h1>{post.data.title}</h1>
+                            </a>
+                            <time class="flex-shrink ml-6" datetime={post.data.pubDate.toISOString()}>
+                                {post.data.pubDate.toLocaleDateString()}
+                            </time>
+                        </div>
+                        <p>{post.data.description}</p>
+                    </article>
+                ))
+            }
+        </div>
+        <div class="flex-shrink mt-4 flex flex-nowrap flex-row justify-center">
+            <span class="text-center w-5/12">{page.url.prev ? <a href={"/fonsecovizk-dev" + page.url.prev}>&larr; Página anterior</a> : "Não há página anterior"}</span>
+            <span class="text-center w-2/12">&nbsp;|&nbsp;</span>
+            <span class="text-center w-5/12">{page.url.next ? <a href={"/fonsecovizk-dev" + page.url.next}>Próxima página &rarr;</a> : "Não há próxima página"}</span>
+        </div>
+    </div>
+</MainLayout>

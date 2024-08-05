@@ -1,0 +1,89 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+
+import euUm from "../images/other/eu-um.jpg";
+import euDois from "../images/other/eu-dois.jpg";
+import euTres from "../images/other/eu-tres.jpg";
+---
+
+<MainLayout title="Currículo" description="curriculo" images={[euUm, euDois, euTres]}>
+    <h1 class="text-xl text-center blinking-terminal-cursor mb-3">Esse currículo é importado do google docs!</h1>
+    <section>Se quiser ver o documento original, <a target="_blank" class="underline decoration-black" href="https://docs.google.com/document/d/e/2PACX-1vS848j638bes4_jiRfYAudSJrOXfiO4IoSWme2SGncZJVjfqcERay6RrdQNuPBHwO1JPIB43vEzNmiA/pub">clique aqui</a>.</section>
+    <div id="iframe-container" class="mt-2 pt-3 border-t-2 border-black">
+        <h1 id="msg-erro-curriculo" class="hidden text-xl blinking-terminal-cursor mb-3">Oops! Houve algum erro ao carregar meu currículo kkkk...</h1>
+    </div>
+</MainLayout>
+
+<style is:inline>
+    #iframe-container > div.doc-content {
+        padding: 0;
+    }
+</style>
+
+<script is:inline data-astro-rerun>
+    function scopeCSS(css, scope) {
+        // Regex para encontrar seletores CSS, incluindo seletores complexos
+        return css.replace(/([^\r\n,{}]+)(,(?=[^}]*{)|\s*{)/g, (_, selectors, brace) => {
+            // Dividir os seletores e adicionar o escopo
+            let scopedSelectors = selectors
+                .split(",")
+                .map((selector) => {
+                    // Ignorar seletores @media, @keyframes, etc.
+                    if (selector.trim().startsWith("@")) {
+                        return selector;
+                    }
+                    return `${scope} ${selector.trim()}`;
+                })
+                .join(", ");
+
+            return `${scopedSelectors} ${brace}`;
+        });
+    }
+
+    function replaceNbspWithHyphen(html) {
+        return html.replace(/((&nbsp;)\s*)+/g, "	");
+    }
+
+    async function loadCurriculo() {
+        fetch("https://docs.google.com/document/d/e/2PACX-1vS848j638bes4_jiRfYAudSJrOXfiO4IoSWme2SGncZJVjfqcERay6RrdQNuPBHwO1JPIB43vEzNmiA/pub?embedded=true")
+            .then(async (response) => response.text())
+            .then((data) => {
+                let parser = new DOMParser();
+                let doc = parser.parseFromString(data, "text/html");
+
+                // Copiar os estilos do documento original para o principal, escopando-os
+                let styleSheets = doc.querySelectorAll('style, link[rel="stylesheet"]');
+                styleSheets.forEach((styleSheet) => {
+                    if (styleSheet.tagName.toLowerCase() === "style") {
+                        applyDocumentCss(styleSheet.innerHTML);
+                    } else if (styleSheet.tagName.toLowerCase() === "link") {
+                        fetch(styleSheet.href)
+                            .then((response) => response.text())
+                            .then((cssText) => applyDocumentCss(cssText));
+                    }
+                });
+
+                // Substituir &nbsp; por hífen
+                let updatedHTML = replaceNbspWithHyphen(doc.body.innerHTML);
+
+                // Make all anchors have a target of _blank
+                updatedHTML = updatedHTML.replace(/<a /g, '<a target="_blank" ');
+
+                // Inserir o conteúdo HTML alterado no corpo da página
+                document.getElementById("iframe-container").innerHTML = updatedHTML;
+            })
+            .catch((error) => {
+                document.getElementById("msg-erro-curriculo").classList.remove("hidden");
+                console.error("Erro ao carregar o documento:", error);
+            });
+
+        function applyDocumentCss(cssText) {
+            let scopedCSS = scopeCSS(cssText, "#iframe-container");
+            let newStyle = document.createElement("style");
+            newStyle.innerHTML = scopedCSS;
+            document.head.appendChild(newStyle);
+        }
+    }
+
+    loadCurriculo();
+</script>

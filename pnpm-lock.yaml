@@ -20,6 +20,9 @@ importers:
       '@astrojs/tailwind':
         specifier: ^5.1.0
         version: 5.1.0(astro@4.13.1(typescript@5.5.4))(tailwindcss@3.4.7)
+      '@astrojs/ts-plugin':
+        specifier: ^1.9.1
+        version: 1.9.1
       '@fontsource-variable/workbench':
         specifier: ^5.0.2
         version: 5.0.2
@@ -101,6 +104,9 @@ packages:
   '@astrojs/telemetry@3.1.0':
     resolution: {integrity: sha512-/ca/+D8MIKEC8/A9cSaPUqQNZm+Es/ZinRv0ZAzvu2ios7POQSsVD+VOj7/hypWNsNM3T7RpfgNq7H2TU1KEHA==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=21.0.0}
+
+  '@astrojs/ts-plugin@1.9.1':
+    resolution: {integrity: sha512-Rijik6fzJAIAqK9+4iNm+b4TFk82HwEVtK+U5z3XJQJKet8vRQI8V2L27D4jXLjSpsKHvV+rmGlqQOOyXaucgg==}
 
   '@babel/code-frame@7.24.7':
     resolution: {integrity: sha512-BcYH1CVJBO9tvyIZ2jVeXgSIMvGZ2FDRvDdOIVQyuklNKSsx+eppDEBq/g47Ayw+RqNFE+URvOShmf+f/qwAlA==}
@@ -2352,6 +2358,15 @@ snapshots:
       which-pm-runs: 1.1.0
     transitivePeerDependencies:
       - supports-color
+
+  '@astrojs/ts-plugin@1.9.1':
+    dependencies:
+      '@astrojs/compiler': 2.10.1
+      '@jridgewell/sourcemap-codec': 1.5.0
+      '@volar/language-core': 2.4.0-alpha.18
+      '@volar/typescript': 2.4.0-alpha.18
+      semver: 7.6.3
+      vscode-languageserver-textdocument: 1.0.12
 
   '@babel/code-frame@7.24.7':
     dependencies:

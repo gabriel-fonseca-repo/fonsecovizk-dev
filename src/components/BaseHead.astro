@@ -1,4 +1,5 @@
 ---
+import { ViewTransitions } from "astro:transitions";
 import { SEO } from "astro-seo";
 import "../styles/global.css";
 
@@ -42,7 +43,7 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
     }}
     extend={{
         link: [
-            { rel: "icon", href: Astro.url + "/favicon.svg", type: "image/svg+xml" },
+            { rel: "icon", href: "/fonsecovizk-dev/favicon.svg", type: "image/svg+xml" },
             { rel: "canonical", href: canonicalURL.toString() },
         ],
         meta: [
@@ -51,3 +52,5 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
         ],
     }}
 />
+
+<ViewTransitions />
