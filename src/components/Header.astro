@@ -6,19 +6,19 @@ const links = [
 ];
 ---
 
-<header class="bg-white p-4 text-justify rounded-lg main-sibling lg:w-[59rem] mt-4">
-    <nav>
-        <ul class="flex flex-row flex-wrap justify-evenly">
+<header class="bg-white p-4 text-justify rounded-lg main-sibling w-full lg:w-[59rem] mt-4">
+    <nav class="w-full">
+        <ul class="flex flex-row flex-wrap w-full justify-evenly">
             {
                 links.map(({ href, text }) => (
-                    <li class="w-1/4 text-center">
-                        <a class="anchor-bracket text-nowrap" href={href}>
+                    <li class="text-center">
+                        <a class="relative anchor-bracket text-center text-nowrap mx-2" href={href}>
                             {text}
                         </a>
                     </li>
                 ))
             }
-            <div id="socials" class="w-1/4 flex flex-row flex-nowrap gap-2 place-items-center justify-center">
+            <div id="socials" class="flex flex-row flex-nowrap gap-2 place-items-center justify-center">
                 <a aria-label="Meu perfil no LinkedIn" href="https://www.linkedin.com/in/gabrielfonsecafeitosa/" target="_blank">
                     <title>LinkedIn</title>
                     <svg class="h-6 w-6" viewBox="0 0 128 128">
@@ -62,9 +62,12 @@ const links = [
 
     .anchor-bracket:hover::before {
         content: "[";
+        position: absolute;
+        left: -9.59px;
     }
 
     .anchor-bracket:hover:after {
         content: "]";
+        position: absolute;
     }
 </style>
