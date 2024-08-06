@@ -1,6 +1,7 @@
 ---
 import "@fontsource-variable/workbench/full.css";
 import "@fontsource/courier-prime";
+import "@fontsource/comic-mono";
 
 import { Image } from "astro:assets";
 
@@ -53,8 +54,12 @@ const right = `url(${tenmaRight.src})`;
 </html>
 
 <style is:global define:vars={{ johanLeftSrc: left, tenmaRightSrc: right }}>
+    html,
+    body {
+        font-family: "Comic Mono", "Courier Prime", monospace;
+    }
+
     html {
-        font-family: "ComicMono", monospace;
         overflow-y: scroll;
     }
 

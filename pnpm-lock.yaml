@@ -26,6 +26,9 @@ importers:
       '@fontsource-variable/workbench':
         specifier: ^5.0.2
         version: 5.0.2
+      '@fontsource/comic-mono':
+        specifier: ^5.0.11
+        version: 5.0.11
       '@fontsource/courier-prime':
         specifier: ^5.0.20
         version: 5.0.20
@@ -370,6 +373,9 @@ packages:
 
   '@fontsource-variable/workbench@5.0.2':
     resolution: {integrity: sha512-44XiOTOyUC6iWWtb+KEcsLmyWq+Mmpft4FI30diCaN74znHxWApdr7o94nke97zH/ulQeNYdjWpg3sR414Q/hQ==}
+
+  '@fontsource/comic-mono@5.0.11':
+    resolution: {integrity: sha512-WC3Nj9ejLdeQXXnM/1+jcl0zXjrJOaksUcMy55rnakelbDopzuvVNBqvONz98fO5U4zqlApqksWvOvrqx2YEpw==}
 
   '@fontsource/courier-prime@5.0.20':
     resolution: {integrity: sha512-/papZiKYTUA61Jo+N7ZcZZyvjbjbIHSLW3vbO8ZYJbWzVZqqGJg9W0D6cGgE1SCBJ+jMvNR2KB2lBC9PKag3KQ==}
@@ -2765,6 +2771,8 @@ snapshots:
     optional: true
 
   '@fontsource-variable/workbench@5.0.2': {}
+
+  '@fontsource/comic-mono@5.0.11': {}
 
   '@fontsource/courier-prime@5.0.20': {}
 
