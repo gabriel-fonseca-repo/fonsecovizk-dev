@@ -8,5 +8,8 @@ import tailwind from "@astrojs/tailwind";
 export default defineConfig({
   site: 'https://fonsecovizk.dev',
   trailingSlash: "always",
-  integrations: [mdx(), sitemap(), tailwind()]
+  integrations: [mdx(), sitemap({
+    changefreq: 'weekly',
+    priority: 0.7,
+  }), tailwind()]
 });

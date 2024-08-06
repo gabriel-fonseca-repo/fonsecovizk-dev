@@ -37,6 +37,13 @@ const banner = new URL(image, Astro.url).toString();
             description: description,
             siteName: "Blog do fonseca",
         },
+        image: {
+            url: banner,
+            secureUrl: banner,
+            alt: finalTitle,
+            type: "image/jpeg",
+            width: 1200,
+        },
         article: {
             publishedTime: new Date().toISOString(),
             authors: ["Gabriel Fonseca"],
@@ -49,12 +56,14 @@ const banner = new URL(image, Astro.url).toString();
         title: finalTitle,
         description: description,
         image: banner,
+        imageAlt: finalTitle,
         site: Astro.url + "",
     }}
     extend={{
         link: [
             { rel: "icon", href: new URL("/favicon.svg", Astro.url).toString(), type: "image/svg+xml" },
             { rel: "canonical", href: canonicalURL.toString() },
+            { rel: "sitemap", type: "application/xml", href: "/sitemap-index.xml" },
         ],
         meta: [
             { name: "viewport", content: "width=device-width, initial-scale=1" },
