@@ -18,7 +18,7 @@ const links = [
                     </li>
                 ))
             }
-            <div id="socials" class="flex flex-row flex-wrap gap-2 place-items-center justify-center">
+            <div class="flex flex-row flex-wrap gap-2 place-items-center justify-center mt-1 pt-2 border-t-2 border-black min-[483px]:mt-0 min-[483px]:pt-0 min-[483px]:border-none">
                 <a aria-label="Meu perfil no LinkedIn" href="https://www.linkedin.com/in/gabrielfonsecafeitosa/" target="_blank">
                     <title>LinkedIn</title>
                     <svg class="h-6 w-6" viewBox="0 0 128 128">
@@ -56,10 +56,6 @@ const links = [
 </header>
 
 <style is:inline>
-    .socials::before {
-        content: "|";
-    }
-
     .anchor-bracket:hover::before {
         content: "[";
         position: absolute;

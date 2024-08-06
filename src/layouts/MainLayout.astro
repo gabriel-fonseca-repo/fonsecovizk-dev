@@ -32,7 +32,7 @@ const right = `url(${tenmaRight.src})`;
     <head>
         <BaseHead title={title} description={description} />
     </head>
-    <body class="w-full flex flex-col flex-nowrap h-fit place-items-center gap-4">
+    <body class="w-full min-h-[100dvh] grid grid-rows-[auto_1fr_auto] justify-items-center gap-4">
         <Header />
         <div class="flex flex-nowrap flex-col lg:flex-row">
             <div class="m-8 flex flex-row flex-nowrap h-min lg:flex-col lg:sticky lg:top-8">
@@ -54,7 +54,7 @@ const right = `url(${tenmaRight.src})`;
 
 <style is:global define:vars={{ johanLeftSrc: left, tenmaRightSrc: right }}>
     html {
-        font-family: "Courier Prime", monospace;
+        font-family: "ComicMono", monospace;
         overflow-y: scroll;
     }
 
