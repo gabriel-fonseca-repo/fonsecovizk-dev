@@ -1,24 +1,20 @@
 ---
-const links = [
-    { href: "/", text: "Início" },
-    { href: "/curriculo/", text: "Currículo" },
-    { href: "/blog/1/", text: "Meu blog" },
-];
+
 ---
 
-<header class="bg-white p-4 text-justify rounded-lg main-sibling w-full lg:w-[59rem] mt-4">
-    <nav class="w-full">
-        <ul class="flex flex-row flex-wrap w-full justify-evenly">
-            {
-                links.map(({ href, text }) => (
-                    <li class="text-center">
-                        <a class="relative anchor-bracket text-center text-nowrap mx-2" href={href}>
-                            {text}
-                        </a>
-                    </li>
-                ))
-            }
-            <div class="flex flex-row flex-wrap gap-2 place-items-center justify-center mt-1 pt-2 border-t-2 border-black min-[483px]:mt-0 min-[483px]:pt-0 min-[483px]:border-none">
+<header class="bg-white p-4 rounded-lg main-sibling lg:w-[59rem] mt-4">
+    <nav>
+        <ul class="flex flex-nowrap flex-col justify-evenly place-items-center min-[600px]:flex-row">
+            <li class="text-center flex-1">
+                <a class="w-full inline-block anchor-bracket text-center" href={"/"}> Início </a>
+            </li>
+            <li class="text-center flex-1">
+                <a class="w-full inline-block anchor-bracket text-center" href={"/curriculo/"}> Currículo </a>
+            </li>
+            <li class="text-center flex-1">
+                <a class="w-full inline-block anchor-bracket text-center" href={"/blog/1/"}> Blog </a>
+            </li>
+            <div class="flex-1 flex flex-row flex-wrap gap-2 place-items-center justify-center">
                 <a aria-label="Meu perfil no LinkedIn" href="https://www.linkedin.com/in/gabrielfonsecafeitosa/" target="_blank">
                     <title>LinkedIn</title>
                     <svg class="h-6 w-6" viewBox="0 0 128 128">
@@ -58,13 +54,9 @@ const links = [
 <style is:inline>
     .anchor-bracket:hover::before {
         content: "[";
-        position: absolute;
-        left: calc(-9.59px + (-5px));
     }
 
     .anchor-bracket:hover:after {
         content: "]";
-        position: absolute;
-        right: calc(-9.59px + (-5px));
     }
 </style>

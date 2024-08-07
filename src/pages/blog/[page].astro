@@ -54,7 +54,9 @@ const { page } = Astro.props;
                             </time>
                         </div>
                         <p>{post.data.description}</p>
-                        <Image class:list={["rounded-lg", "mt-2"]} src={new URL(post.data.heroImage, Astro.url).toString()} alt={`Banner do post Nº ${post.data}}`} loading={"eager"} inferSize />
+                        <a href={"/blog/" + post.slug + "/"}>
+                            <Image class:list={["rounded-lg", "mt-2"]} src={new URL(post.data.heroImage, Astro.url).toString()} alt={`Banner do post Nº ${post.data}}`} loading={"eager"} inferSize />
+                        </a>
                     </article>
                 ))
             }
