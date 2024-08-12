@@ -1,5 +1,4 @@
 ---
-import { ViewTransitions } from "astro:transitions";
 import { SEO } from "astro-seo";
 import "../styles/global.css";
 
@@ -64,6 +63,10 @@ const banner = new URL(image, Astro.url).toString();
             { rel: "icon", href: new URL("/favicon.svg", Astro.url).toString(), type: "image/svg+xml" },
             { rel: "canonical", href: canonicalURL.toString() },
             { rel: "sitemap", type: "application/xml", href: "/sitemap-index.xml" },
+            { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
+            { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32x32.png" },
+            { rel: "icon", type: "image/png", sizes: "16x16", href: "/favicon-16x16.png" },
+            { rel: "manifest", href: "/site.webmanifest" },
         ],
         meta: [
             { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -72,5 +75,3 @@ const banner = new URL(image, Astro.url).toString();
         ],
     }}
 />
-
-<ViewTransitions />
