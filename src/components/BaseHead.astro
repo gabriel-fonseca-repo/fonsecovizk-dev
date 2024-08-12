@@ -17,6 +17,8 @@ const titleTemplate = "%s - Blog do fonseca";
 const finalTitle = title ? titleTemplate.replace("%s", title) : "Blog do fonseca";
 
 const banner = new URL(image, Astro.url).toString();
+
+const fullUrl = (endpoint: string) => new URL(endpoint, Astro.url).toString();
 ---
 
 <meta charset="utf-8" />
@@ -60,13 +62,12 @@ const banner = new URL(image, Astro.url).toString();
     }}
     extend={{
         link: [
-            { rel: "icon", href: new URL("/favicon.svg", Astro.url).toString(), type: "image/svg+xml" },
             { rel: "canonical", href: canonicalURL.toString() },
-            { rel: "sitemap", type: "application/xml", href: "/sitemap-index.xml" },
-            { rel: "apple-touch-icon", sizes: "180x180", href: "/apple-touch-icon.png" },
-            { rel: "icon", type: "image/png", sizes: "32x32", href: "/favicon-32x32.png" },
-            { rel: "icon", type: "image/png", sizes: "16x16", href: "/favicon-16x16.png" },
-            { rel: "manifest", href: "/site.webmanifest" },
+            { rel: "sitemap", type: "application/xml", href: fullUrl("/sitemap-index.xml") },
+            { rel: "apple-touch-icon", sizes: "180x180", href: fullUrl("/apple-touch-icon.png") },
+            { rel: "icon", type: "image/png", sizes: "32x32", href: fullUrl("/favicon-32x32.png") },
+            { rel: "icon", type: "image/png", sizes: "16x16", href: fullUrl("/favicon-16x16.png") },
+            { rel: "manifest", href: fullUrl("/site.webmanifest") },
         ],
         meta: [
             { name: "viewport", content: "width=device-width, initial-scale=1" },
